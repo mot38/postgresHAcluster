@@ -7,3 +7,4 @@ cd /etc/repmgr/9.4/
 chown -R postgres:postgres /var/lib/pgsql/9.4/data/*
 systemctl start postgresql-9.4
 /usr/pgsql-9.4/bin/repmgr -f /etc/repmgr/9.4/repmgr.conf standby register
+su - postgres -c '/usr/pgsql-9.4/bin/repmgrd -f /etc/repmgr/9.4/repmgr.conf --daemonize'

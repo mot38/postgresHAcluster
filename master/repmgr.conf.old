@@ -1,4 +1,0 @@
-cluster=test
-node=1
-node_name=node1
-conninfo='host=master user=repmgr dbname=repmgr'

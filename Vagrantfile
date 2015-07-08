@@ -31,7 +31,7 @@ Vagrant.configure(2) do | global |
         virtualbox_inet: true
       config.vm.synced_folder node[:data], '/scripts'
       config.vm.provision "shell",
-        inline: "/vagrant/install.sh #{i+1}"
+        inline: "/vagrant/install.sh #{i+1} #{nodes.length}"
     end
   end
 

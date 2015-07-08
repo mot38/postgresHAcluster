@@ -39,6 +39,27 @@ HOSTS_FILE
 
 yum install -y rsync
 
+# Configure replication manager
+###############################
+echo 'Configuring replication manager'
+cat <<REPMGR > /etc/repmgr/${VERSION}/repmgr.conf
+cluster=test
+node=$1
+node_name=node$1
+conninfo='host=$(hostname) user=repmgr dbname=repmgr'
+pg_bindir=/usr/pgsql-${VERSION}/bin
+master_response_timeout=60
+reconnect_attempts=6
+reconnect_interval=10
+failover=automatic
+promote_command='/etc/repmgr/${VERSION}/auto_failover.sh'
+follow_command='/usr/pgsql-${VERSION}/bin/repmgr standby follow -f /etc/repmgr/${VERSION}/repmgr.conf'
+priority=`expr $2 - $1 + 1`
+wal_level=logical
+use_replication_slots=3
+max_replication_slots=3
+REPMGR
+
 # Type-specific installation
 ############################
 echo "Installing configuration specific to $(hostname)"

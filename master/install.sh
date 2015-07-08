@@ -20,31 +20,9 @@ echo 'Starting PostgreSQL service'
 systemctl start postgresql-${VERSION}
 systemctl enable postgresql-${VERSION} >/dev/null 2>&1
 
-# Configure replication manager
-###############################
-echo 'Configuring replication manager'
-cat <<REPMGR > /etc/repmgr/${VERSION}/repmgr.conf
-cluster=test
-node=$1
-node_name=node$1
-conninfo='host=$(hostname) user=repmgr dbname=repmgr'
-pg_bindir=/usr/pgsql-${VERSION}/bin
-master_response_timeout=60
-reconnect_attempts=6
-reconnect_interval=10
-failover=automatic
-promote_command='/etc/repmgr/${VERSION}/auto_failover.sh'
-follow_command='/usr/pgsql-${VERSION}/bin/repmgr standby follow -f /etc/repmgr/${VERSION}/repmgr.conf'
-REPMGR
-
 echo 'Creating replication user account'
 su - postgres -c "createuser -s repmgr" 2>/dev/null
 su - postgres -c "createdb repmgr -O repmgr" 2>/dev/null
-
-
-# Enable hot standby
-####################
-#cp /scripts/hotstandby.conf ${PG_DIR}/conf.d/hotstandby.conf
 
 # Create pg_hba.conf
 ####################

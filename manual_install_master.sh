@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-su - postgres -c "ssh -o StrictHostKeyChecking=no postgres@node2  exit"
-su - postgres -c "ssh -o StrictHostKeyChecking=no postgres@node3  exit"
-
 rsync -avz ~postgres/.ssh/authorized_keys node2:~postgres/.ssh/
 rsync -avz ~postgres/.ssh/authorized_keys node3:~postgres/.ssh/
 rsync -avz ~postgres/.ssh/id_rsa* node2:~postgres/.ssh/
