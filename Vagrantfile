@@ -7,17 +7,17 @@ Vagrant.configure(2) do | global |
 
   nodes = [
     {
-      :name => 'master',
+      :name => 'A',
       :addr => '192.168.33.10',
       :data => './master'
     },
     {
-      :name => 'slave',
+      :name => 'B',
       :addr => '192.168.33.20',
       :data => './slave'
     },
     {
-      :name => 'spare',
+      :name => 'C',
       :addr => '192.168.33.30',
       :data => './slave'
     }

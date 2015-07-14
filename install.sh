@@ -27,14 +27,18 @@ for rpm in ${PKGLIST[@]}; do
   fi
 done
 
-cp /vagrant/auto_failover.sh /etc/repmgr/${VERSION}/
+cat << AUTO_FAILOVER_CONF >> /etc/repmgr/${VERSION}/auto_failover.sh
+echo "Promoting Standby at `date '+%Y-%m-%d %H:%M:%S'`" #>>/var/log/repmgr/repmgr.log
+/usr/pgsql-9.4/bin/repmgr -f /etc/repmgr/9.4/repmgr.conf --verbose standby promote #>>/var/log/repmgr/repmgr.log
+AUTO_FAILOVER_CONF
+#cp /vagrant/auto_failover.sh /etc/repmgr/${VERSION}/
 chmod 755 /etc/repmgr/${VERSION}/auto_failover.sh
 # Add Node entries to hosts File
 ################################
 cat << HOSTS_FILE >> /etc/hosts
-192.168.33.10 node1 master
-192.168.33.20 node2 slave
-192.168.33.30 node3 spare
+192.168.33.10 node1 A
+192.168.33.20 node2 B
+192.168.33.30 node3 C
 HOSTS_FILE
 
 yum install -y rsync
@@ -55,9 +59,7 @@ failover=automatic
 promote_command='/etc/repmgr/${VERSION}/auto_failover.sh'
 follow_command='/usr/pgsql-${VERSION}/bin/repmgr standby follow -f /etc/repmgr/${VERSION}/repmgr.conf'
 priority=`expr $2 - $1 + 1`
-wal_level=logical
-use_replication_slots=3
-max_replication_slots=3
+use_replication_slots=1
 REPMGR
 
 # Type-specific installation

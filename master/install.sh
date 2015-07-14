@@ -35,6 +35,10 @@ local   all             all                                     peer
 host     repmgr           repmgr      127.0.0.1/32             trust
 host     repmgr           repmgr      192.168.33.10/24         trust
 host     replication      all         192.168.33.10/24         trust
+host     repmgr           repmgr      192.168.33.20/24         trust
+host     replication      all         192.168.33.20/24         trust
+host     repmgr           repmgr      192.168.33.30/24         trust
+host     replication      all         192.168.33.30/24         trust
 #host    all             all             127.0.0.1/32            ident
 # IPv6 local connections:
 host    all             all             ::1/128                 ident
@@ -57,6 +61,7 @@ max_wal_senders = 10
 wal_keep_segments = 5000   # 80 GB required on pg_xlog
 hot_standby = on
 shared_preload_libraries = 'repmgr_funcs'
+max_replication_slots = 3
 POSTGRES_CONF
 
 systemctl reload postgresql-${VERSION}
