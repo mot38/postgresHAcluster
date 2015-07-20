@@ -5,6 +5,9 @@ if [ $(id -u) != '0' ]; then
   exit 1
 fi
 
+#
+echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+
 export VERSION='9.4' # Use 9.3 or 9.4
 export SML_VER=$(echo $VERSION | sed 's/\.//')
 export PG_DIR="/var/lib/pgsql/${VERSION}/data"
@@ -31,14 +34,15 @@ cat << AUTO_FAILOVER_CONF >> /etc/repmgr/${VERSION}/auto_failover.sh
 echo "Promoting Standby at `date '+%Y-%m-%d %H:%M:%S'`" #>>/var/log/repmgr/repmgr.log
 /usr/pgsql-9.4/bin/repmgr -f /etc/repmgr/9.4/repmgr.conf --verbose standby promote #>>/var/log/repmgr/repmgr.log
 AUTO_FAILOVER_CONF
-#cp /vagrant/auto_failover.sh /etc/repmgr/${VERSION}/
-chmod 755 /etc/repmgr/${VERSION}/auto_failover.sh
+
+chmod 777 /etc/repmgr/${VERSION}/auto_failover.sh
 # Add Node entries to hosts File
 ################################
 cat << HOSTS_FILE >> /etc/hosts
-192.168.33.10 node1 A
-192.168.33.20 node2 B
-192.168.33.30 node3 C
+192.168.33.10 node1 A a 1
+192.168.33.20 node2 B b 2
+192.168.33.30 node3 C c 3
+192.168.33.40 node4 D d 4
 HOSTS_FILE
 
 yum install -y rsync
