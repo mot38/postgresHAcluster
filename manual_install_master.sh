@@ -7,3 +7,4 @@ rsync -avz ~postgres/.ssh/id_rsa* node3:~postgres/.ssh/
 rsync -avz ~postgres/.ssh/id_rsa* node4:~postgres/.ssh/
 systemctl restart postgresql-9.4
 /usr/pgsql-9.4/bin/repmgr -f /etc/repmgr/9.4/repmgr.conf master register
+su - postgres -c '/usr/pgsql-9.4/bin/repmgrd -f /etc/repmgr/9.4/repmgr.conf --daemonize'

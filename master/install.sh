@@ -21,7 +21,7 @@ systemctl start postgresql-${VERSION}
 systemctl enable postgresql-${VERSION} >/dev/null 2>&1
 
 echo 'Creating replication user account'
-su - postgres -c "createuser -s repmgr" 2>/dev/null
+su - postgres -c "createuser -s --replication repmgr" 2>/dev/null
 su - postgres -c "createdb repmgr -O repmgr" 2>/dev/null
 
 # Create pg_hba.conf
@@ -62,7 +62,8 @@ max_wal_senders = 10
 wal_keep_segments = 5000   # 80 GB required on pg_xlog
 hot_standby = on
 shared_preload_libraries = 'repmgr_funcs'
-max_replication_slots = 10 
+max_replication_slots = 10
+synchronous_commit = 'on'
 POSTGRES_CONF
 
 systemctl reload postgresql-${VERSION}
