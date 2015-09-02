@@ -60,7 +60,7 @@ reconnect_attempts=6
 reconnect_interval=10
 failover=automatic
 promote_command='/etc/repmgr/${VERSION}/auto_failover.sh'
-follow_command='/usr/pgsql-${VERSION}/bin/repmgr standby follow -f /etc/repmgr/${VERSION}/repmgr.conf'
+follow_command='/usr/pgsql-${VERSION}/bin/repmgr standby follow -f /etc/repmgr/${VERSION}/repmgr.conf -W'
 priority=`expr $2 - $1 + 1`
 use_replication_slots=1
 REPMGR

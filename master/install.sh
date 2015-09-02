@@ -14,15 +14,6 @@ fi
 sed -i -e "s/#include_dir = 'conf.d'/include_dir = 'conf.d'/" ${PG_DIR}/postgresql.conf
 [ ! -d "${PG_DIR}/conf.d" ] && mkdir "${PG_DIR}/conf.d"
 
-# Service startup
-#################
-echo 'Starting PostgreSQL service'
-systemctl start postgresql-${VERSION}
-systemctl enable postgresql-${VERSION} >/dev/null 2>&1
-
-echo 'Creating replication user account'
-su - postgres -c "createuser -s --replication repmgr" 2>/dev/null
-su - postgres -c "createdb repmgr -O repmgr" 2>/dev/null
 
 # Create pg_hba.conf
 ####################
@@ -66,6 +57,17 @@ max_replication_slots = 10
 synchronous_commit = 'on'
 POSTGRES_CONF
 
-systemctl reload postgresql-${VERSION}
+#systemctl reload postgresql-${VERSION}
+
+# Service startup
+#################
+echo 'Starting PostgreSQL service'
+systemctl start postgresql-${VERSION}
+systemctl enable postgresql-${VERSION} >/dev/null 2>&1
+
+echo 'Creating replication user account'
+su - postgres -c "createuser -s --replication repmgr" 2>/dev/null
+su - postgres -c "createdb repmgr -O repmgr" 2>/dev/null
+
 
 su - postgres -c "mkdir ./.ssh ; ssh-keygen -f ./.ssh/id_rsa -t rsa -N '' ; cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys ; chmod 600 ~/.ssh/authorized_keys"
