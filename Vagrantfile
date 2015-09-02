@@ -7,23 +7,18 @@ Vagrant.configure(2) do | global |
 
   nodes = [
     {
-      :name => 'A',
+      :name => 'nodea',
       :addr => '192.168.33.10',
       :data => './master'
     },
     {
-      :name => 'B',
+      :name => 'nodeb',
       :addr => '192.168.33.20',
       :data => './slave'
     },
     {
-      :name => 'C',
+      :name => 'nodec',
       :addr => '192.168.33.30',
-      :data => './slave'
-    },
-    {
-      :name => 'D',
-      :addr => '192.168.33.40',
       :data => './slave'
     }
   ]
@@ -37,8 +32,6 @@ Vagrant.configure(2) do | global |
       config.vm.synced_folder node[:data], '/scripts'
       config.vm.provision "shell",
         inline: "/vagrant/install.sh #{i+1} #{nodes.length}"
-
-
 
     end
   end

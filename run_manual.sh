@@ -1,5 +1,5 @@
 #!/bin/bash
 
-vagrant ssh A -c 'sudo /vagrant/manual_install_master.sh'
-vagrant ssh B -c 'sudo /vagrant/manual_install_node.sh'
-vagrant ssh C -c 'sudo /vagrant/manual_install_node2.sh'
+vagrant ssh nodea -c 'sudo /vagrant/manual_install_master.sh'
+vagrant ssh nodeb -c 'sudo /vagrant/manual_install_node.sh'
+vagrant ssh nodec -c 'sudo /vagrant/manual_install_node.sh'

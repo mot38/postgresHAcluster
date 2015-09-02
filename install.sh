@@ -39,10 +39,9 @@ chmod 777 /etc/repmgr/${VERSION}/auto_failover.sh
 # Add Node entries to hosts File
 ################################
 cat << HOSTS_FILE >> /etc/hosts
-192.168.33.10 node1 A a 1
-192.168.33.20 node2 B b 2
-192.168.33.30 node3 C c 3
-192.168.33.40 node4 D d 4
+192.168.33.10 nodea
+192.168.33.20 nodeb
+192.168.33.30 nodec
 HOSTS_FILE
 
 yum install -y rsync
