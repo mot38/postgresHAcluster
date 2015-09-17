@@ -44,9 +44,6 @@ cat << HOSTS_FILE >> /etc/hosts
 192.168.33.10 nodea
 192.168.33.20 nodeb
 192.168.33.30 nodec
-192.168.33.40 bart
-192.168.33.100 vip
-192.168.33.101 haproxyvip
 HOSTS_FILE
 
 yum install -y rsync
@@ -122,10 +119,8 @@ vrrp_instance HAPROXY-CLUSTER {
     }
 }
 KEEPALIVE
-
 systemctl start keepalived
 systemctl enable keepalived
-
 
 # HA Proxy setup
 #export CLUSTER='PG_CLUSTER' 
@@ -165,11 +160,6 @@ listen admin *:8080
 HAPROXY
 systemctl start haproxy
 systemctl enable haproxy
-
-#Barman setup
-
-yum install -y barman
-
 
 
 # Type-specific installation

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-for SERVER in A B C D ; do
+for SERVER in nodea nodeb nodec ; do
   vagrant snapshot back ${SERVER}
 done
