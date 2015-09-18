@@ -6,5 +6,4 @@ if [ $(id -u) != '0' ]; then
   exit 1
 fi
 
-su - barman -c "mkdir /var/lib/barman/.ssh"
-
+chown barman:barman -R /var/lib/barman/.ssh/

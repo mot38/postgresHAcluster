@@ -166,11 +166,6 @@ HAPROXY
 systemctl start haproxy
 systemctl enable haproxy
 
-#Barman setup
-
-yum install -y barman
-
-
 
 # Type-specific installation
 ############################

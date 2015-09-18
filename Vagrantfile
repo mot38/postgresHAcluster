@@ -24,7 +24,7 @@ Vagrant.configure(2) do | global |
     {
       :name => 'bart',
       :addr => '192.168.33.40',
-      :data => './slave'
+      :data => './bart'
     }
 
   ]
