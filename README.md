@@ -40,7 +40,7 @@ For cascading replication / failover, nodec should run /vagrant/manual_install_n
 The IP address for writes to the postgres db is 192.168.33.100 This will always point to the master node
 The IP address for the reads from the postgres db is 192.168.33.101 This will point to the nodes by round robin
 
-To take a backup
+To take a backup and restore:
 - barman@bart$ barman backup primary
 - root@restore_to# systemctl stop postgresql-9.4
 - postgres@restore_to$ rm -rf ~/9.4/data 
