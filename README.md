@@ -13,10 +13,9 @@ Prerequisites:
 - Vagrant
 
 Set up environment:
-- host$ git clone git@github.com:mot38/postgresHAcluster.git
 
 Clone git repository:
-- host$ git clone 
+- host$ git clone git@github.com:mot38/postgresHAcluster.git
 
 On host - to spin up the 4 boxes:
 - host$ vagrant up
