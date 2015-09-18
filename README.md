@@ -38,7 +38,7 @@ The cluster set up is for nodeb and nodec to both replicate from nodea. On failu
 For cascading replication / failover, nodec should run /vagrant/manual_install_nodec.sh 
 
 The IP address for writes to the postgres db is 192.168.33.100 This will always point to the master node
-The IP address for the reads from the postgres db is 192.168.33.101 This will point to the nodes by round robin
+The IP address for the reads from the postgres db is 192.168.33.101 This will point to the nodes by round robin. You can view these reads by browsing to 192.168.33.101:8080
 
 To take a backup and restore:
 - barman@bart$ barman backup primary
