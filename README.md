@@ -7,17 +7,17 @@ This code is a proof of concept to illustrate a high available postgres database
 - keepalived for an additional floating VIP for postgres reads
 - haproxy for load balancing
 - a barman server to take backups and to restore including point in time recovery (PITR)
-
+______________
 Prerequisites:
 - Virtualbox
 - Vagrant
-
+___________________
 Set up environment:
 - host$ git clone git@github.com:mot38/postgresHAcluster.git
-
+_____________________
 Clone git repository:
 - host$ git clone 
-
+_________________________________
 On host - to spin up the 4 boxes:
 - host$ vagrant up
 
