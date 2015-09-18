@@ -26,7 +26,7 @@ On host - to ssh into the 4 boxes:
 - host$ vagrant ssh nodec
 - host$ vagrant ssh bart
 
-For each of these we need to run a manual install file. This is to manipulate the install/setup sequence because the ssh key exchange has prerequisites.
+For each of these we need to run a manual install file. This is to manipulate the install/setup sequence because the ssh key exchange has prerequisites and vagrant works by running the install script in it's entirity before moving on the next box.
 - nodea$ /vagrant/manual_install_master.sh
   The default passwords for root is 'root'
 - nodeb$ /vagrant/manual_install_node.sh
