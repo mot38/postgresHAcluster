@@ -14,17 +14,16 @@ Prerequisites:
 
 Set up environment:
   - host$ git clone git@github.com:mot38/postgresHAcluster.git
-Clone git repository:
+  Clone git repository:
   - host$ git clone 
-On host - to spin up the 4 boxes:
+  On host - to spin up the 4 boxes:
   - host$ vagrant up
-On host - to ssh into the 4 boxes:
+  On host - to ssh into the 4 boxes:
   - host$ vagrant ssh nodea
   - host$ vagrant ssh nodeb
   - host$ vagrant ssh nodec
   - host$ vagrant ssh bart
-
-For each of these we need to run a manual install file. This is to manipulate the install/setup sequence because the ssh key exchange has prerequisites.
+  For each of these we need to run a manual install file. This is to manipulate the install/setup sequence because the ssh key exchange has prerequisites.
   - nodea$ /vagrant/manual_install_master.sh
     The default passwords for root is 'root'
   - nodeb$ /vagrant/manual_install_master.sh
