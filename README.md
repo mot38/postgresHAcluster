@@ -46,4 +46,5 @@ barman@bart$ barman backup primary
 root@restore_to# systemctl stop postgresql-9.4
 postgres@restore_to$ rm -rf ~/9.4/data 
 barman@bart$ barman recover --remote-ssh-command "ssh postgres@restore_to" primary latest /var/lib/pgsql/9.4/data --target-time '2015-09-18 13:21:00'
+root@restore_to# systemctl start postgresql-9.4
 
