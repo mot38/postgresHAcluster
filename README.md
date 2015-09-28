@@ -42,8 +42,9 @@ The IP address for the reads from the postgres db is 192.168.33.101 This will po
 
 To take a backup and restore:
 - barman@bart$ barman backup primary
+- barman@bart$ barman list-backup primary #note the backup ID
 - root@restore_to# systemctl stop postgresql-9.4
 - postgres@restore_to$ rm -rf ~/9.4/data 
-- barman@bart$ barman recover --remote-ssh-command "ssh postgres@restore_to" primary latest /var/lib/pgsql/9.4/data --target-time '2015-09-18 13:21:00'
+- barman@bart$ barman recover --remote-ssh-command "ssh postgres@restore_to" primary latest /var/lib/pgsql/9.4/data  --target-time '2015-09-18 13:21:00' #or replace "latest" with backup ID
 - root@restore_to# systemctl start postgresql-9.4
 
