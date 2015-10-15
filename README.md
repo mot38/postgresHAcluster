@@ -41,7 +41,7 @@ The IP address for writes to the postgres db is 192.168.33.100 This will always 
 The IP address for the reads from the postgres db is 192.168.33.101 This will point to the nodes by round robin. You can view these reads by browsing to 192.168.33.101:8080
 
 To take a backup and restore:
-- barman@bart$ barman backup primary
+- barman@bart$ barman backup primary (primary is defined on barman.conf)
 - barman@bart$ barman list-backup primary #note the backup ID
 - root@restore_to# systemctl stop postgresql-9.4
 - postgres@restore_to$ rm -rf ~/9.4/data 
